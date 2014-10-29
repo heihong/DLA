@@ -9,6 +9,7 @@ import java.awt.Panel;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -40,7 +41,7 @@ public class Main {
 		//content.setPreferredSize(new Dimension(windowsWidth, widowsHeight));
 		
 		// (x,y)	 x lignes y colonnes
-		paramsPanel.setLayout(new GridLayout(3, 2));
+		paramsPanel.setLayout(new GridLayout(4, 2));
 		
 		//On ajoute le bouton au content pane de la JFrame
 		paramsPanel.add(new Label("Taille de la simulation : "));
@@ -49,10 +50,17 @@ public class Main {
 		paramsPanel.add(new Label("Nombre de particules :"));
 		paramsPanel.add(new JTextField());
 				
-		paramsPanel.add(new Label("Probabilité de collage"));
-		paramsPanel.add(new JTextField());
+		paramsPanel.add(new Label("Probabilité de collage :"));
+		JTextField textField = new JTextField();
+		textField.setText("1");
+		paramsPanel.add(textField);
 		
-	
+		paramsPanel.add(new Label("Type de déplacement :"));
+		JComboBox<String> combo = new JComboBox<String>();
+		combo.addItem("Balistique");
+		combo.addItem("Brownien");
+		paramsPanel.add(combo);
+		
 		// On ajoute le conteneur
 		fenetre.add(titlePanel, BorderLayout.NORTH);
 		fenetre.add(paramsPanel, BorderLayout.CENTER);
