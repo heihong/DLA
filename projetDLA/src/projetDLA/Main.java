@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -17,8 +19,8 @@ import javax.swing.JTextField;
 
 public class Main {
 
-	private static int windowsWidth = 800;
-	private static int widowsHeight = 600;
+	public static int windowsWidth = 800;
+	public static int widowsHeight = 600;
 
 	public static void main(String[] args) {
 
@@ -38,10 +40,15 @@ public class Main {
 		
 		// Le conteneur principal
 		JPanel paramsPanel = new JPanel();
+		
 		//content.setPreferredSize(new Dimension(windowsWidth, widowsHeight));
 		
 		// (x,y)	 x lignes y colonnes
-		paramsPanel.setLayout(new GridLayout(4, 2));
+		GridLayout gridLayout = new GridLayout(5, 2);
+		gridLayout.setHgap(10);
+		gridLayout.setVgap(10);
+		paramsPanel.setLayout(gridLayout);
+		
 		
 		//On ajoute le bouton au content pane de la JFrame
 		paramsPanel.add(new Label("Taille de la simulation : "));
@@ -60,6 +67,17 @@ public class Main {
 		combo.addItem("Balistique");
 		combo.addItem("Brownien");
 		paramsPanel.add(combo);
+		
+		
+		paramsPanel.add(new Label(""));
+		JButton launchButton = new JButton("Lancer le DLA");
+		launchButton.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Render renderWindow = new Render();				
+			}
+		});
+		paramsPanel.add(launchButton);
 		
 		// On ajoute le conteneur
 		fenetre.add(titlePanel, BorderLayout.NORTH);
